@@ -32,3 +32,5 @@ public class ClientRepository implements Repository<Client> {
         return null;
     }
 }
+
+// Oczek zrobił syf na GitHubie :)
