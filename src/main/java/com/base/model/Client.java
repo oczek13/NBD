@@ -22,6 +22,7 @@ public class Client {
     private boolean archiveStatus;
     private ClientType clientType;
 
+// Testuje sobie GitHuba :)
 
     @Override
     public String toString() {
