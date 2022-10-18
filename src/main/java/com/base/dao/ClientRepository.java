@@ -1,7 +1,6 @@
 package com.base.dao;
 
 import com.base.model.Client;
-import com.base.model.Rent;
 
 import java.util.ArrayList;
 import java.util.List;
