@@ -5,6 +5,7 @@ import com.base.model.Client;
 
 
 public class ClientManager {
+
     ClientRepository currentClients;
     ClientRepository archivedClients;
 
