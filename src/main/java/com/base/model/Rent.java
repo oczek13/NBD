@@ -15,7 +15,7 @@ import java.util.Date;
 public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String rentID;
+    private Integer rentID;
     @ManyToOne
     private Client client;
     @ManyToOne
@@ -24,7 +24,7 @@ public class Rent {
     private Date beginTime;
     private Date endTime;
 
-    public Rent(String rentID, Client client, Room room, boolean archive, Date beginTime, Date endTime) throws Exception {
+    public Rent(Integer rentID, Client client, Room room, boolean archive, Date beginTime, Date endTime) throws Exception {
         this.rentID = rentID;
         this.client = client;
         this.room = room;

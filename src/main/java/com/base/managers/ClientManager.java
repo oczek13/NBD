@@ -5,14 +5,16 @@ import com.base.model.Client;
 
 
 public class ClientManager {
-    ClientRepository clientRepository;
+    ClientRepository currentClients;
+    ClientRepository archivedClients;
 
     public void registerClient(){
-        clientRepository.add(new Client());
+        currentClients.add(new Client());
     }
 
     public void unregisterClient(Client client){
-        clientRepository.remove(client);
+        currentClients.remove(client);
+        archivedClients.add(client);
     }
 
 

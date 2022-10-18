@@ -18,7 +18,7 @@ public class Client {
     private String lastName;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String personalID;
+    private Integer personalID;
     private boolean archiveStatus;
     private ClientType clientType;
 
