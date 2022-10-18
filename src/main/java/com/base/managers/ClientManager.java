@@ -5,11 +5,17 @@ import com.base.model.Client;
 
 
 public class ClientManager {
-    private ClientService clientService;
+    ClientRepository clientRepository;
 
-    public void registerClient(String firstName){
-        Client client = new Client();
-        client.setFirstName(firstName);
-        clientService.registerClient(firstName);
+    public void registerClient(){
+        clientRepository.add(new Client());
     }
+
+    public void unregisterClient(Client client){
+        clientRepository.remove(client);
+    }
+
+
+
+
 }

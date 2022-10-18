@@ -1,5 +1,7 @@
 package com.base.dao;
 
-public class RentRepository implements Repository{
+import com.base.model.Rent;
+
+public class RentRepository implements Repository<Rent>{
 
 }
