@@ -17,7 +17,7 @@ public class MainApp {
         Rent rent = new Rent(1, client, room, false, today, sevenDaysLater);
 
         ClientManager clientManager = new ClientManager();
-        clientManager.registerClient();
+        clientManager.registerClient(client);
 
 
 

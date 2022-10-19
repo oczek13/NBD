@@ -15,10 +15,9 @@ public class ClientManager {
     ClientRepository currentClients;
     ClientRepository archivedClients;
     @Transactional
-    public void registerClient(){
+    public void registerClient(Client client){
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        Client client = new Client();
         em.persist(client);
         em.getTransaction().commit();
         //currentClients.add(new Client());
