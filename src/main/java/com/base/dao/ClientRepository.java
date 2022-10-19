@@ -11,9 +11,8 @@ public class ClientRepository implements Repository<Client> {
 
     @Transactional
     @Override
-    public Integer add(Client obj) {
+    public void add(Client obj) {
         clients.add(obj);
-        return obj.getPersonalID();
     }
 
 

@@ -1,6 +1,7 @@
 package com.base.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,9 +12,12 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Entity
 @Table(name = "Room")
-@NoArgsConstructor
+
 public class Room {
 
     @Column (name = "Base price")

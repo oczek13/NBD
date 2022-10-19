@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
-import java.util.List;
 
 @Table(name = "Client")
 
@@ -37,8 +36,8 @@ public class Client implements Serializable {
     @Column (name = "Client type")
     private ClientType clientType;
 
-    @OneToMany (mappedBy = "client")
-    private List<Rent> rents;
+    //@OneToMany (mappedBy = "client")
+    //private List<Rent> rents;
 
  @Override
     public String toString() {

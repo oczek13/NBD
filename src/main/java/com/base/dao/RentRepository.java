@@ -1,6 +1,5 @@
 package com.base.dao;
 
-import com.base.model.Client;
 import com.base.model.Rent;
 
 import java.util.ArrayList;
@@ -9,9 +8,8 @@ import java.util.List;
 public class RentRepository implements Repository<Rent>{
     private List<Rent> rents = new ArrayList<>();
 
-    public Integer add(Rent obj){
+    public void add(Rent obj){
         rents.add(obj);
-        return null;
     }
 
     @Override

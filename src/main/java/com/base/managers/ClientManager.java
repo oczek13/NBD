@@ -5,21 +5,20 @@ import com.base.model.Client;
 import com.base.model.ClientType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.Transactional;
+import org.junit.Test;
 
 import static com.base.dao.EntityManagerFactory.getEntityManager;
-
 
 public class ClientManager {
 
     ClientRepository currentClients;
     ClientRepository archivedClients;
-
+    @Transactional
     public void registerClient(){
-
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        Client client = new Client("Adam", "Malysz", 123, ClientType.NORMAL);
-
+        Client client = new Client();
         em.persist(client);
         em.getTransaction().commit();
         //currentClients.add(new Client());
