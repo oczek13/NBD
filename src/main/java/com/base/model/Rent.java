@@ -1,6 +1,7 @@
 package com.base.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 
@@ -28,8 +28,8 @@ public class Rent {
     @JoinColumn (name = "Room")
     private Room room;
 
-    @Column (name = "isArchive")
-    private boolean archive = false;
+//    @Column (name = "isArchive")
+//    private boolean archive = false;
 
     @Column (name = "beginTime")
     private Date beginTime;
@@ -40,11 +40,10 @@ public class Rent {
     public Rent() {
     }
 
-    public Rent(Integer rentID, Client client, Room room, boolean archive, Date beginTime, Date endTime) throws Exception {
+    public Rent(Integer rentID, Client client, Room room, Date beginTime, Date endTime) throws Exception {
         this.rentID = rentID;
         this.client = client;
         this.room = room;
-        this.archive = archive;
         this.beginTime = beginTime;
         this.endTime = endTime;
         if(endTime.getTime() - beginTime.getTime() < 0){

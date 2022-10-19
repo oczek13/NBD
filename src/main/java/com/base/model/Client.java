@@ -36,8 +36,8 @@ public class Client implements Serializable {
     @Column (name = "Client type")
     private ClientType clientType;
 
-    //@OneToMany (mappedBy = "client")
-    //private List<Rent> rents;
+//    @OneToMany (mappedBy = "client")
+//    private List<Rent> rents;
 
  @Override
     public String toString() {
