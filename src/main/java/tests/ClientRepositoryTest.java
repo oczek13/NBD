@@ -9,6 +9,7 @@ import com.base.model.Client;
 public class ClientRepositoryTest {
     Client client1 = new Client("Piotr", "Wojtczak", 236699, ClientType.PREMIUM);
     Client client2 = new Client("Michal", "Oczko", 996632, ClientType.NORMAL);
+
     @Test
     public void ClientRepositoryAddTest() {
         ClientRepository clientRepository = new ClientRepository();
