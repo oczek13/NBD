@@ -13,15 +13,26 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 public class Rent {
+    @Column (name = "rentID", unique = true)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rentID;
+
     @ManyToOne
+    @JoinColumn(name = "Client")
     private Client client;
+
     @ManyToOne
+    @JoinColumn (name = "Room")
     private Room room;
+
+    @Column (name = "isArchive")
     private boolean archive = false;
+
+    @Column (name = "beginTime")
     private Date beginTime;
+
+    @Column (name = "endTime")
     private Date endTime;
 
     public Rent(Integer rentID, Client client, Room room, boolean archive, Date beginTime, Date endTime) throws Exception {

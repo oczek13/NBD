@@ -13,6 +13,8 @@ public class ClientRepository implements Repository<Client> {
         clients.add(obj);
     }
 
+
+
     @Override
     public void remove(Client obj) {
         if(clients.isEmpty()) return;
@@ -23,6 +25,7 @@ public class ClientRepository implements Repository<Client> {
     @Override
     public Client findByID(Integer id) {
         if (clients.isEmpty()) return null;
+
         for (int i = 0; i < clients.size(); i++) {
             if (clients.get(i).getPersonalID() == id) {
                 return clients.get(i);

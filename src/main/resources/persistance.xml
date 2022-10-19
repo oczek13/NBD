@@ -24,6 +24,9 @@
 
             <property name="javax.persistence.sql-load-script-source"
                       value="META-INF/sql/initial_data.sql" />
+
         </properties>
     </persistence-unit>
+
+
 </persistence>
