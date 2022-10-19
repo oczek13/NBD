@@ -34,6 +34,8 @@ public class Client implements Serializable {
     @Column (name = "Client type")
     private ClientType clientType;
 
+
+
  @Override
     public String toString() {
         return "Client{" +

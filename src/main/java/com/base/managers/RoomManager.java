@@ -2,8 +2,6 @@ package com.base.managers;
 
 import com.base.dao.RoomRepository;
 import com.base.model.Room;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 public class RoomManager {
     RoomRepository availableRooms;

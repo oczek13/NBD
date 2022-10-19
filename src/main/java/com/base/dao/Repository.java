@@ -1,8 +1,9 @@
 package com.base.dao;
 
 public interface Repository <T>{
-    void add(T obj);
+    Integer add(T obj);
     void remove(T obj);
     T findByID(Integer id);
+    int quantity ();
 
 }

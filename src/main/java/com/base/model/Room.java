@@ -1,8 +1,8 @@
 package com.base.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -13,7 +13,9 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "Room")
+@NoArgsConstructor
 public class Room {
+
     @Column (name = "Base price")
     private double basePrice;
 
@@ -27,10 +29,6 @@ public class Room {
 
     @Column (name = "is Available")
     private boolean isAvailable;
-
-    public Room() {
-
-    }
 
     @Override
     public String toString() {

@@ -1,6 +1,5 @@
 package com.base.dao;
 
-import com.base.model.Rent;
 import com.base.model.Room;
 
 import java.util.ArrayList;
@@ -10,8 +9,9 @@ public class RoomRepository implements Repository<Room> {
     private List<Room> rooms = new ArrayList<>();
 
     @Override
-    public void add(Room obj) {
+    public Integer add(Room obj) {
         rooms.add(obj);
+        return null;
     }
 
     @Override
@@ -24,11 +24,17 @@ public class RoomRepository implements Repository<Room> {
     @Override
     public Room findByID(Integer id) {
         if (rooms.isEmpty()) return null;
-        for (int i = 0; i < rooms.size(); i++) {
-            if (rooms.get(i).getRoomNumber() == id) {
-                return rooms.get(i);
+        Room auxiliaryRoom = new Room();
+        for (Room room : rooms) {
+            if (room.getRoomNumber().equals(id)) {
+                auxiliaryRoom = room;
             }
         }
-        return null;
+        return auxiliaryRoom;
+    }
+
+    @Override
+    public int quantity(){
+        return rooms.size();
     }
 }

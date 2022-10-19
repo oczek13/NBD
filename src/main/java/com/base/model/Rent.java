@@ -24,7 +24,7 @@ public class Rent {
     @JoinColumn(name = "Client")
     private Client client;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn (name = "Room")
     private Room room;
 
