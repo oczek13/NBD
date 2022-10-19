@@ -1,7 +1,6 @@
 package com.base.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +8,15 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity
+
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
+
+@Entity
+@Table(name = "Rent")
 public class Rent {
-    @Column (name = "rentID", unique = true)
     @Id
+    @Column (name = "rentID", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rentID;
 
@@ -35,6 +37,9 @@ public class Rent {
     @Column (name = "endTime")
     private Date endTime;
 
+    public Rent() {
+    }
+
     public Rent(Integer rentID, Client client, Room room, boolean archive, Date beginTime, Date endTime) throws Exception {
         this.rentID = rentID;
         this.client = client;
@@ -47,9 +52,6 @@ public class Rent {
         }
     }
 
-    public Rent() {
-
-    }
 
     public Integer getRentDays(){
         return Math.toIntExact(endTime.getTime() - beginTime.getTime());

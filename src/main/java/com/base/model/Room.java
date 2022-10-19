@@ -12,6 +12,7 @@ import lombok.Setter;
 @Access(AccessType.FIELD)
 
 @Entity
+@Table(name = "Room")
 public class Room {
     @Column (name = "Base price")
     private double basePrice;
