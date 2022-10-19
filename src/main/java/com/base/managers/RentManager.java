@@ -4,9 +4,6 @@ import com.base.dao.RentRepository;
 import com.base.model.Client;
 import com.base.model.Rent;
 import com.base.model.Room;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Date;
 
 public class RentManager {
