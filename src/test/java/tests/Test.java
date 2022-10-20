@@ -12,9 +12,11 @@ private final EntityManagerFactory entityManagerFactory = Persistence.createEnti
     @org.junit.jupiter.api.Test
     void method(){
         try(EntityManager e = entityManagerFactory.createEntityManager()){
-            Client client = new Client("Adam", "Malysz", ClientType.NORMAL);
+            Client client1 = new Client("Michaś", "Oczko", ClientType.NORMAL);
+            Client client2 = new Client("Piotr", "Wojtczak", ClientType.PREMIUM);
             e.getTransaction().begin();
-            e.persist(client);
+            e.persist(client1);
+            e.persist(client2);
             e.getTransaction().commit();
         }
 

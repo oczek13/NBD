@@ -1,4 +1,4 @@
-package com.base.front;
+package com.base.dao.front;
 
 import com.base.managers.ClientManager;
 import com.base.model.*;
