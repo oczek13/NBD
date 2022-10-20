@@ -20,7 +20,7 @@ import lombok.Setter;
 
 public class Room {
 
-    @Column (name = "Base price")
+    @Column (name = "BasePrice")
     private double basePrice;
 
     @Column(name = "roomNumber", unique = true)
@@ -31,7 +31,7 @@ public class Room {
     @Column (name = "Capacity")
     private Integer roomCapacity;
 
-    @Column (name = "is Available")
+    @Column (name = "isAvailable")
     private boolean isAvailable;
 
     @Override

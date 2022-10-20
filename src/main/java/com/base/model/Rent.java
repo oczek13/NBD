@@ -9,11 +9,12 @@ import java.util.Date;
 
 @Getter
 @Setter
+@Table(name = "Rent")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Access(AccessType.FIELD)
 
 @Entity
-@Table(name = "Rent")
+
 public class Rent {
     @Id
     @Column (name = "rentID", unique = true)
@@ -21,11 +22,11 @@ public class Rent {
     private Integer rentID;
 
     @ManyToOne
-    @JoinColumn(name = "Client")
+   // @JoinColumn(name = "Client")
     private Client client;
 
     @OneToOne
-    @JoinColumn (name = "Room")
+    //@JoinColumn (name = "Room")
     private Room room;
 
 //    @Column (name = "isArchive")

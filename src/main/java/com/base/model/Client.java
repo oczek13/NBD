@@ -22,10 +22,10 @@ import java.io.Serializable;
 
 public class Client implements Serializable {
 
-    @Column(name = "First Name")
+    @Column(name = "FirstName")
     private String firstName;
 
-    @Column (name = "Last Name")
+    @Column (name = "LastName")
     private String lastName;
 
     @Column(name = "personalID", unique = true)
@@ -33,7 +33,7 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer personalID;
 
-    @Column (name = "Client type")
+    @Column (name = "ClientType")
     private ClientType clientType;
 
 //    @OneToMany (mappedBy = "client")
@@ -46,5 +46,11 @@ public class Client implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", personalID='" + personalID + '\'' +
                 '}';
+    }
+
+    public Client(String firstName, String lastName, ClientType clientType) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.clientType = clientType;
     }
 }
