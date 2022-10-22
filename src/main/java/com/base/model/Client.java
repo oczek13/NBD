@@ -1,6 +1,8 @@
 package com.base.model;
 
+import com.base.dao.converters.ClientTypeConverter;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,38 +21,37 @@ import java.io.Serializable;
 @Access(AccessType.FIELD)
 
 @Entity
+@Embeddable
+public class Client extends AbstractEntity {
 
-public class Client implements Serializable {
+    @Id
+    @Column(name = "ID", unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column(name = "FirstName")
+    @NotEmpty
+    @Column(name = "Personal_ID")
+    private Integer Personal_ID;
+
+    @NotEmpty
+    @Column(name = "First_Name")
     private String firstName;
 
-    @Column (name = "LastName")
+    @NotEmpty
+    @Column (name = "Last_Name")
     private String lastName;
 
-    @Column(name = "personalID", unique = true)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer personalID;
-
-    @Column (name = "ClientType")
+    @Convert(converter = ClientTypeConverter.class)
     private ClientType clientType;
 
-//    @OneToMany (mappedBy = "client")
-//    private List<Rent> rents;
+    @NotEmpty
+    @Column
+    boolean isArchive = false;
 
- @Override
-    public String toString() {
-        return "Client{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", personalID='" + personalID + '\'' +
-                '}';
-    }
-
-    public Client(String firstName, String lastName, ClientType clientType) {
+    public Client(final String firstName, final String lastName, final Integer Personal_ID, final ClientType clientType) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.Personal_ID = Personal_ID;
         this.clientType = clientType;
     }
 }

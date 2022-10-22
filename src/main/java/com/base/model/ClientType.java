@@ -1,18 +1,14 @@
 package com.base.model;
 
-import jakarta.persistence.MappedSuperclass;
+public abstract class ClientType extends AbstractEntity{
+    public abstract double getDiscout();
 
-public enum ClientType {
-    NORMAL(1),
-    PREMIUM(0.7);
-    private double discount;
+    public abstract String getTypeInfo();
 
-    ClientType(double discount) {
-        this.discount = discount;
+    public abstract int getMaxDays();
+
+    @Override
+    public String toString() {
+        return "";
     }
-
-    public double getDiscount(){
-        return discount;
-    }
-
 }

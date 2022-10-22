@@ -2,8 +2,10 @@
 //
 //import com.base.model.ClientType;
 //
-//import com.base.dao.ClientRepository;
+//import com.base.dao.repositories.ClientRepository;
 //import com.base.model.Client;
+//import org.testng.Assert;
+//import org.testng.annotations.Test;
 //
 //public class ClientRepositoryTest {
 //    Client client1 = new Client("Piotr", "Wojtczak", 236699, ClientType.PREMIUM);
@@ -14,7 +16,7 @@
 //        ClientRepository clientRepository = new ClientRepository();
 //        clientRepository.add(client1);
 //        clientRepository.add(client2);
-//        Assert.assertEquals(clientRepository.quantity(),2);
+//
 //    }
 //    @Test
 //    public void ClientRepositoryRemoveTest() {

@@ -1,32 +1,32 @@
-package com.base.managers;
-
-import com.base.dao.RentRepository;
-import com.base.model.Client;
-import com.base.model.Rent;
-import com.base.model.Room;
-import java.util.Date;
-
-public class RentManager {
-
-    RentRepository rentRepository;
-
-    public RentManager(RentRepository rentRepository) {
-        this.rentRepository = rentRepository;
-    }
-
-    public boolean isAvailable(Room room){
-        if(room.isAvailable())return true;
-        else return false;
-    }
-
-    public boolean tryRoom(Integer rentID, Client client, Room room, Date beginTime, Date endTime) throws Exception {
-        if(!isAvailable(room)) return false;
-        Rent rent = new Rent(rentID, client, room, beginTime, endTime);
-        rentRepository.add(rent);
-        return true;
-    }
-}
-
+//package com.base.managers;
+//
+//import com.base.dao.repositories.RentRepository;
+//import com.base.model.Client;
+//import com.base.model.Rent;
+//import com.base.model.Room;
+//import java.util.Date;
+//
+//public class RentManager {
+//
+//    RentRepository rentRepository;
+//
+//    public RentManager(RentRepository rentRepository) {
+//        this.rentRepository = rentRepository;
+//    }
+//
+//    public boolean isAvailable(Room room){
+//        if(room.isAvailable())return true;
+//        else return false;
+//    }
+//
+//    public boolean tryRoom(Integer rentID, Client client, Room room, Date beginTime, Date endTime) throws Exception {
+//        if(!isAvailable(room)) return false;
+//        Rent rent = new Rent(rentID, client, room, beginTime, endTime);
+//        rentRepository.add(rent);
+//        return true;
+//    }
+//}
+//
 //    private RentRepository currentRents;
 //    private RentRepository archivedRents;
 //

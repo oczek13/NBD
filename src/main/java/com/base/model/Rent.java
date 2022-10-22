@@ -15,7 +15,7 @@ import java.util.Date;
 
 @Entity
 
-public class Rent {
+public class Rent extends AbstractEntity {
     @Id
     @Column (name = "rentID", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

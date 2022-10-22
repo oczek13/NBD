@@ -18,7 +18,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "Room")
 
-public class Room {
+public class Room extends AbstractEntity {
 
     @Column (name = "BasePrice")
     private double basePrice;
