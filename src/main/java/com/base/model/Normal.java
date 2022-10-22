@@ -12,10 +12,6 @@ public class Normal extends ClientType{
         return "NORMAL";
     }
 
-    @Override
-    public int getMaxDays() {
-        return 7;
-    }
 
     @Override
     public String toString() {

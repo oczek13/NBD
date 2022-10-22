@@ -12,11 +12,6 @@ public class Premium extends ClientType{
     }
 
     @Override
-    public int getMaxDays() {
-        return 14;
-    }
-
-    @Override
     public String toString() {
         return "Premium";
     }
