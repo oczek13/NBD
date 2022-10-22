@@ -6,7 +6,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Room.class)
-public abstract class Room_ {
+public abstract class Room_ extends com.base.model.AbstractEntity_ {
 
 	public static volatile SingularAttribute<Room, Boolean> isAvailable;
 	public static volatile SingularAttribute<Room, Integer> roomNumber;
