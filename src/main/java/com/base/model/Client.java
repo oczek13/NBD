@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class Client extends AbstractEntity {
 
     @Id
-    @Column(name = "ID", unique = true)
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

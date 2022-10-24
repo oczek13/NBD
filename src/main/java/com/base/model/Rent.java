@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Rent extends AbstractEntity {
     @Id
-    @Column (name = "rentID", unique = true)
+    @Column (name = "rentID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer rentID;
 

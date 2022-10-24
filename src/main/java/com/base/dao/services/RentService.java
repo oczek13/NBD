@@ -9,13 +9,13 @@ import com.base.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RentServices {
+public class RentService {
 
     private final RentRepository rentRepository;
     private final ClientRepository clientRepository;
     private final RoomRepository bookRepository;
 
-    public RentServices(RentRepository rentRepository, ClientRepository clientRepository, RoomRepository bookRepository) {
+    public RentService(RentRepository rentRepository, ClientRepository clientRepository, RoomRepository bookRepository) {
         this.rentRepository = rentRepository;
         this.clientRepository = clientRepository;
         this.bookRepository = bookRepository;

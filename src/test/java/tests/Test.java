@@ -5,7 +5,7 @@ import com.base.dao.repositories.ClientRepository;
 import com.base.dao.repositories.RentRepository;
 import com.base.dao.repositories.RoomRepository;
 import com.base.dao.services.ClientService;
-import com.base.dao.services.RentServices;
+import com.base.dao.services.RentService;
 import com.base.dao.services.RoomService;
 import com.base.model.*;
 import jakarta.persistence.EntityManager;
@@ -17,8 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.*;
 
 
 public class Test {
@@ -28,7 +27,7 @@ public class Test {
     private RoomRepository roomRepository;
     private ClientRepository clientRepository;
     private RoomService roomService;
-    private RentServices rentService;
+    private RentService rentService;
     private ClientService clientService;
 
     @BeforeEach
@@ -37,7 +36,7 @@ public class Test {
         this.roomRepository = new RoomRepository(em);
         this.clientRepository = new ClientRepository(em);
         this.rentRepository = new RentRepository(em);
-        this.rentService = new RentServices(rentRepository, clientRepository, roomRepository);
+        this.rentService = new RentService(rentRepository, clientRepository, roomRepository);
         this.clientService = new ClientService(clientRepository);
         this.roomService = new RoomService(roomRepository);
 
@@ -76,6 +75,6 @@ public class Test {
         rentService.rentRoom(client1, roomList);
         Client client2 = new Client("Piotruś", "Wojtczak", 236699, new Premium());
         clientService.addClient(client2);
-        rentService.rentRoom(client2, roomList);
+        assertFalse(rentService.rentRoom(client2, roomList));
     }
 }

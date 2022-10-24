@@ -21,13 +21,13 @@ public class Room extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "roomID", unique = true)
+    @Column(name = "roomID")
     private Integer roomID;
 
     @Column (name = "BasePrice")
     private double basePrice;
 
-    @Column(name = "roomNumber", unique = true)
+    @Column(name = "roomNumber")
     private Integer roomNumber;
 
     @Column (name = "Capacity")
