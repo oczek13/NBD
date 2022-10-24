@@ -33,12 +33,11 @@ public abstract class RepositoryImpl <T extends AbstractEntity> implements Repos
     }
     @Transactional
     @Override
-    public T update (T obj){
+    public void update (T obj){
         EntityManager manager = EntityManagerCreator.getEntityManager();
         manager.getTransaction().begin();
         manager.merge(obj);
         manager.getTransaction().commit();
-        return obj;
     }
 
     @Override

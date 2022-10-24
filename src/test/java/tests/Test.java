@@ -11,14 +11,10 @@ import com.base.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.validation.constraints.AssertFalse;
 import org.junit.jupiter.api.BeforeEach;
-
 import java.util.Arrays;
 import java.util.List;
-
 import static org.testng.AssertJUnit.*;
-
 
 public class Test {
     private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("HOTEL");
@@ -96,10 +92,6 @@ public class Test {
 
         rentService.rentRoom(client1, roomList);
         rentService.rentRoom(client2, roomList1);
-        //assertFalse(rentService.rentRoom(client3, roomList));
-
-
-
-
+        assertFalse(rentService.rentRoom(client3, roomList));
     }
 }
