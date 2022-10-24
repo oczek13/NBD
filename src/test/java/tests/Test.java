@@ -7,14 +7,14 @@ import com.base.dao.repositories.RoomRepository;
 import com.base.dao.services.ClientService;
 import com.base.dao.services.RentServices;
 import com.base.dao.services.RoomService;
-import com.base.model.Client;
-import com.base.model.Premium;
-import com.base.model.Room;
+import com.base.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -33,9 +33,6 @@ public class Test {
 
     @BeforeEach
     void beforeEach() {
-//        if (entityManagerFactory != null) {
-//            entityManagerFactory.close();
-//        }
         em = entityManagerFactory.createEntityManager();
         this.roomRepository = new RoomRepository(em);
         this.clientRepository = new ClientRepository(em);
@@ -47,26 +44,38 @@ public class Test {
     }
 
     @org.junit.jupiter.api.Test
-    public void roomRepositoryRegisterRoomTest() {
+    public void roomRepositoryTest() {
         Room room = new Room(250, 1, 2, true);
         Room retrievedRoom = roomService.registerRoom(250, 1, 2, true);
         assertTrue((room.getBasePrice()) == (retrievedRoom.getBasePrice()));
-       }
-
-    @org.junit.jupiter.api.Test
-    public void roomRepositoryUnregisterRoomTest() {
-        Room room = roomService.registerRoom(250, 1, 2, true);
-        roomService.unregisterRoom(room);
+        roomService.unregisterRoom(retrievedRoom);
         assertTrue((roomService.getRoomById(room.getRoomNumber())) == null);
     }
 
     @org.junit.jupiter.api.Test
-    public void clientRepository_RegisterClient_Test() {
+    public void clientRepositoryTest() {
         Client client = new Client("Piotr", "Wojtczak", 236699, new Premium());
         clientService.addClient(client);
         Client foundClient = clientService.getClientById(client.getId());
         assertTrue(Objects.equals(client.getPersonal_ID(), foundClient.getPersonal_ID()));
         clientService.removeClient(client);
-        assertTrue(clientService.getClientById(foundClient.getId()) == null);
+        assertTrue(clientService.getClientById(foundClient.getPersonal_ID()) == null);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void RentRepositoryTest() {
+        Client client1 = new Client("Michaś", "Oczko", 996632, new Normal());
+        Room room1 = new Room(250, 1, 2, true);
+        Room room2 = new Room(400, 2, 3, true);
+        List<Room> roomList = Arrays.asList(room1, room2);
+        Rent rent = new Rent();
+        rent.setRooms(roomList);
+        clientService.addClient(client1);
+        roomService.registerRoom(250, 1, 2, true);
+        roomService.registerRoom(400, 2, 3, true);
+        rentService.rentRoom(client1, roomList);
+        Client client2 = new Client("Piotruś", "Wojtczak", 236699, new Premium());
+        clientService.addClient(client2);
+        rentService.rentRoom(client2, roomList);
     }
 }
