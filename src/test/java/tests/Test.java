@@ -69,21 +69,37 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void RentRepositoryTest() {
 
+
         Client client1 = new Client("Michaś", "Oczko", 996632, new Normal());
         clientService.addClient(client1);
         Client client2 = new Client("Piotruś", "Wojtczak", 236699, new Premium());
         clientService.addClient(client2);
+        Client client3 = new Client("Marian", "Paździoch", 123456, new Premium());
+        clientService.addClient(client3);
 
         Room room1 = new Room(250, 1, 2, true);
         Room room2 = new Room(400, 2, 3, true);
+        Room room3 = new Room(800, 3, 4, true);
+        Room room4 = new Room(1100, 4, 2, true);
         roomService.registerRoom(room1);
         roomService.registerRoom(room2);
+        roomService.registerRoom(room3);
+        roomService.registerRoom(room4);
 
         List<Room> roomList = Arrays.asList(room1, room2);
         Rent rent = new Rent();
         rent.setRooms(roomList);
 
+        List<Room> roomList1 = Arrays.asList(room3, room4);
+        Rent rent1 = new Rent();
+        rent1.setRooms(roomList1);
+
         rentService.rentRoom(client1, roomList);
-        rentService.rentRoom(client2, roomList);
+        rentService.rentRoom(client2, roomList1);
+        //assertFalse(rentService.rentRoom(client3, roomList));
+
+
+
+
     }
 }

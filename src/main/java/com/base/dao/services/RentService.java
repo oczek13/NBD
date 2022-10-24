@@ -29,6 +29,7 @@ public class RentService {
             return false;
         }
         rentRepository.add(new Rent(rooms, client));
+
         return true;
     }
 

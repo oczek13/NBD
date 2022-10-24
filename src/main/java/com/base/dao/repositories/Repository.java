@@ -8,8 +8,4 @@ public interface Repository <T>{
     T update (T obj);
     T getById(int id);
     public List<T> findAll();
-//    T getById(Integer id);
-//    T findByID(Integer id);
-//    int quantity ();
-
 }
