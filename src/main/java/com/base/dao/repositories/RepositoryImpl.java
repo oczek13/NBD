@@ -5,6 +5,7 @@ import com.base.model.AbstractEntity;
 import com.base.util.EntityManagerCreator;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ public abstract class RepositoryImpl <T extends AbstractEntity> implements Repos
     public RepositoryImpl(EntityManager em){
         this.em = em;
     }
-
+    @Transactional
     @Override
     public T add(T obj) {
         EntityManager manager = EntityManagerCreator.getEntityManager();
@@ -24,7 +25,7 @@ public abstract class RepositoryImpl <T extends AbstractEntity> implements Repos
         manager.getTransaction().commit();
         return obj;
     }
-
+    @Transactional
     @Override
     public void delete(T obj) {
 
@@ -34,10 +35,11 @@ public abstract class RepositoryImpl <T extends AbstractEntity> implements Repos
 //        entityTransaction.commit();
         EntityManager manager = EntityManagerCreator.getEntityManager();
         manager.getTransaction().begin();
+        obj = manager.merge(obj);
         manager.remove(obj);
         manager.getTransaction().commit();
     }
-
+    @Transactional
     @Override
     public T update (T obj){
         EntityManager manager = EntityManagerCreator.getEntityManager();

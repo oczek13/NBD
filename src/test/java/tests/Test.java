@@ -47,13 +47,18 @@ public class Test {
     }
 
     @org.junit.jupiter.api.Test
-    public void roomRepository_RegisterRoom_Test() {
+    public void roomRepositoryRegisterRoomTest() {
         Room room = new Room(250, 1, 2, true);
         Room retrievedRoom = roomService.registerRoom(250, 1, 2, true);
         assertTrue((room.getBasePrice()) == (retrievedRoom.getBasePrice()));
-        roomService.unregisterRoom(retrievedRoom);
-        assertTrue((roomService.getRoomById(retrievedRoom.getRoomNumber())) == null);
        }
+
+    @org.junit.jupiter.api.Test
+    public void roomRepositoryUnregisterRoomTest() {
+        Room room = roomService.registerRoom(250, 1, 2, true);
+        roomService.unregisterRoom(room);
+        assertTrue((roomService.getRoomById(room.getRoomNumber())) == null);
+    }
 
     @org.junit.jupiter.api.Test
     public void clientRepository_RegisterClient_Test() {
