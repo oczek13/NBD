@@ -20,8 +20,8 @@ public class RoomService {
         return roomRepository.findAll();
     }
 
-    public Room registerRoom(double basePrice, int roomNumber, int roomCapacity, boolean isAvailable ){
-        return roomRepository.add(new Room(basePrice, roomNumber, roomCapacity, isAvailable));
+    public Room registerRoom(Room room){
+        return roomRepository.add(room);
     }
 
     public void unregisterRoom(Room room) {

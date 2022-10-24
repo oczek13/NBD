@@ -45,10 +45,10 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void roomRepositoryTest() {
         Room room = new Room(250, 1, 2, true);
-        Room retrievedRoom = roomService.registerRoom(250, 1, 2, true);
-        assertTrue((room.getBasePrice()) == (retrievedRoom.getBasePrice()));
+        Room retrievedRoom = roomService.registerRoom(room);
+        assertEquals((room.getBasePrice()), (retrievedRoom.getBasePrice()));
         roomService.unregisterRoom(retrievedRoom);
-        assertTrue((roomService.getRoomById(room.getRoomNumber())) == null);
+        assertNull((roomService.getRoomById(room.getRoomNumber())));
     }
 
     @org.junit.jupiter.api.Test
@@ -56,25 +56,26 @@ public class Test {
         Client client = new Client("Piotr", "Wojtczak", 236699, new Premium());
         clientService.addClient(client);
         Client foundClient = clientService.getClientById(client.getId());
-        assertTrue(Objects.equals(client.getPersonal_ID(), foundClient.getPersonal_ID()));
+        assertEquals(client.getPersonal_ID(), foundClient.getPersonal_ID());
         clientService.removeClient(client);
-        assertTrue(clientService.getClientById(foundClient.getPersonal_ID()) == null);
+        assertNull(clientService.getClientById(foundClient.getPersonal_ID()));
     }
 
     @org.junit.jupiter.api.Test
     public void RentRepositoryTest() {
         Client client1 = new Client("Michaś", "Oczko", 996632, new Normal());
+        clientService.addClient(client1);
         Room room1 = new Room(250, 1, 2, true);
         Room room2 = new Room(400, 2, 3, true);
+        roomService.registerRoom(room1);
+        roomService.registerRoom(room2);
         List<Room> roomList = Arrays.asList(room1, room2);
         Rent rent = new Rent();
         rent.setRooms(roomList);
-        clientService.addClient(client1);
-        roomService.registerRoom(250, 1, 2, true);
-        roomService.registerRoom(400, 2, 3, true);
+                System.out.println(rent.getRooms());
         rentService.rentRoom(client1, roomList);
-        Client client2 = new Client("Piotruś", "Wojtczak", 236699, new Premium());
-        clientService.addClient(client2);
-        assertFalse(rentService.rentRoom(client2, roomList));
+//        Client client2 = new Client("Piotruś", "Wojtczak", 236699, new Premium());
+//        clientService.addClient(client2);
+//        assertFalse(rentService.rentRoom(client2, roomList));
     }
 }
