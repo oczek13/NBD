@@ -19,6 +19,6 @@ public class ClientService {
     }
 
     public void removeClient(Client client) {
-        clientRepository.remove(client);
+        clientRepository.delete(client);
     }
 }

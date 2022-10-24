@@ -13,19 +13,21 @@ import lombok.Setter;
 @Access(AccessType.FIELD)
 
 @NoArgsConstructor
-@AllArgsConstructor
 
 @Entity
 @Table(name = "Room")
 
 public class Room extends AbstractEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "roomID", unique = true)
+    private Integer roomID;
+
     @Column (name = "BasePrice")
     private double basePrice;
 
     @Column(name = "roomNumber", unique = true)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roomNumber;
 
     @Column (name = "Capacity")
@@ -42,5 +44,12 @@ public class Room extends AbstractEntity {
                 ", roomCapacity=" + roomCapacity +
                 ", isAvailable=" + isAvailable +
                 '}';
+    }
+
+    public Room(double basePrice, Integer roomNumber, Integer roomCapacity, boolean isAvailable) {
+        this.basePrice = basePrice;
+        this.roomNumber = roomNumber;
+        this.roomCapacity = roomCapacity;
+        this.isAvailable = isAvailable;
     }
 }

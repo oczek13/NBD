@@ -16,7 +16,7 @@ public class RoomService {
         return roomRepository.getById(id);
     }
 
-    public List<Room> findAllBooks() {
+    public List<Room> findAllRooms() {
         return roomRepository.findAll();
     }
 
@@ -25,6 +25,6 @@ public class RoomService {
     }
 
     public void unregisterRoom(Room room) {
-        roomRepository.remove(room);
+        roomRepository.delete(room);
     }
 }

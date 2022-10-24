@@ -28,8 +28,8 @@ public class Rent extends AbstractEntity {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "rent_rooms",
-            joinColumns = {@JoinColumn(name = "rent_id", referencedColumnName = "rent_id")},
-            inverseJoinColumns = {@JoinColumn(name = "room_id", referencedColumnName = "room_id")})
+            joinColumns = {@JoinColumn(name = "rentID", referencedColumnName = "rentID")},
+            inverseJoinColumns = {@JoinColumn(name = "roomID", referencedColumnName = "roomID")})
     @NotNull
     private List<Room> rooms;
 
