@@ -11,11 +11,11 @@ import com.base.model.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.validation.constraints.AssertFalse;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import static org.testng.AssertJUnit.*;
 
@@ -72,10 +72,9 @@ public class Test {
         List<Room> roomList = Arrays.asList(room1, room2);
         Rent rent = new Rent();
         rent.setRooms(roomList);
-                System.out.println(rent.getRooms());
         rentService.rentRoom(client1, roomList);
-//        Client client2 = new Client("Piotruś", "Wojtczak", 236699, new Premium());
-//        clientService.addClient(client2);
-//        assertFalse(rentService.rentRoom(client2, roomList));
+        Client client2 = new Client("Piotruś", "Wojtczak", 236699, new Premium());
+        clientService.addClient(client2);
+        assertTrue(rentService.rentRoom(client2, roomList));
     }
 }

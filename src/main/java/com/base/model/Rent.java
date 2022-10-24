@@ -26,7 +26,7 @@ public class Rent extends AbstractEntity {
    // @JoinColumn(name = "Client")
     private Client client;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE})
     @JoinTable(name = "rent_rooms",
             joinColumns = {@JoinColumn(name = "rentID", referencedColumnName = "rentID")},
             inverseJoinColumns = {@JoinColumn(name = "roomID", referencedColumnName = "roomID")})
