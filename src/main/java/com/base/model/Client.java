@@ -1,57 +1,117 @@
+//package com.base.model;
+//
+//import com.base.dao.converters.ClientTypeConverter;
+//import jakarta.persistence.*;
+//import jakarta.validation.constraints.NotEmpty;
+//import lombok.AllArgsConstructor;
+//import lombok.Getter;
+//import lombok.NoArgsConstructor;
+//import lombok.Setter;
+//import java.io.Serializable;
+//
+//@Table(name = "Client")
+//
+//@Getter
+//@Setter
+//
+//@AllArgsConstructor
+//@NoArgsConstructor
+//
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Access(AccessType.FIELD)
+//
+//@Entity
+//@Embeddable
+//public class Client extends AbstractEntity {
+//
+//    @Id
+//    @Column(name = "ID")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private int id;
+//
+//    @NotEmpty
+//    @Column(name = "Personal_ID")
+//    private Integer Personal_ID;
+//
+//    @NotEmpty
+//    @Column(name = "First_Name")
+//    private String firstName;
+//
+//    @NotEmpty
+//    @Column (name = "Last_Name")
+//    private String lastName;
+//
+//    @Convert(converter = ClientTypeConverter.class)
+//    private ClientType clientType;
+//
+//    @NotEmpty
+//    @Column
+//    boolean isArchive = false;
+//
+//    public Client(final String firstName, final String lastName, final Integer Personal_ID, final ClientType clientType) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.Personal_ID = Personal_ID;
+//        this.clientType = clientType;
+//    }
+//}
+
+
 package com.base.model;
 
-import com.base.dao.converters.ClientTypeConverter;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import java.io.Serializable;
 
-@Table(name = "Client")
+import lombok.Getter;
+import lombok.Setter;
+import org.bson.codecs.pojo.annotations.BsonCreator;
+import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.junit.platform.engine.UniqueId;
+
 
 @Getter
 @Setter
+@BsonDiscriminator(key = "_clazz")
+public abstract class Client extends AbstractEntity {
 
-@AllArgsConstructor
-@NoArgsConstructor
-
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Access(AccessType.FIELD)
-
-@Entity
-@Embeddable
-public class Client extends AbstractEntity {
-
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @NotEmpty
-    @Column(name = "Personal_ID")
-    private Integer Personal_ID;
-
-    @NotEmpty
-    @Column(name = "First_Name")
+    @BsonProperty("personalid")
+    private String personalID;
+    @BsonProperty("firstname")
     private String firstName;
-
-    @NotEmpty
-    @Column (name = "Last_Name")
+    @BsonProperty("lastname")
     private String lastName;
+    @BsonProperty("age")
+    private Integer age;
+    @BsonProperty("isarchived")
+    private boolean isArchived;
 
-    @Convert(converter = ClientTypeConverter.class)
-    private ClientType clientType;
-
-    @NotEmpty
-    @Column
-    boolean isArchive = false;
-
-    public Client(final String firstName, final String lastName, final Integer Personal_ID, final ClientType clientType) {
+    @BsonCreator
+    public Client(@BsonProperty("_id") UniqueId enitityId,
+                  @BsonProperty("firstname") String firstName,
+                  @BsonProperty("lastname") String lastName,
+                  @BsonProperty("personalid") String personalID,
+                  @BsonProperty("isarchived") boolean isArchived)
+    {
+        super(enitityId);
         this.firstName = firstName;
         this.lastName = lastName;
-        this.Personal_ID = Personal_ID;
-        this.clientType = clientType;
+        this.personalID = personalID;
+        this.isArchived = isArchived;
     }
+
+    public Client(String firstName, String lastName,  String personalID) {
+        super(new UniqueId());
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personalID = personalID;
+        this.isArchived = false;
+    }
+
+    public abstract Float getPenalty();
+
+    public abstract Integer getMaxDays();
+
+    public abstract Integer getMaxBooks();
+
 }
+
+
