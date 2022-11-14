@@ -16,7 +16,7 @@ public class RentService {
     private final RoomRepository roomRepository;
     private final ClientRepository clientRepository;
 
-    public RentService(RentRepository rentRepository, ClientRepository clientRepository, RoomRepository roomRepository) {
+    public RentService() {
         this.rentRepository = new RentRepository();
         this.roomRepository = new RoomRepository();
         this.clientRepository = new ClientRepository();

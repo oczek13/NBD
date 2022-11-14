@@ -1,0 +1,16 @@
+com\base\dao\repositories\RentRepository.class
+com\base\model\UniqueIdCodecProvider.class
+com\base\dao\repositories\ClientRepository.class
+com\base\dao\services\RentService.class
+com\base\dao\services\RoomService.class
+com\base\model\Client.class
+com\base\model\Room.class
+com\base\model\Normal.class
+com\base\model\UniqueIdCodec.class
+com\base\dao\repositories\RoomRepository.class
+com\base\model\AbstractEntity.class
+com\base\model\Premium.class
+com\base\model\Rent.class
+com\base\dao\repositories\AbstractMongoRepository.class
+com\base\model\UniqueId.class
+com\base\dao\services\ClientService.class

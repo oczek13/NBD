@@ -9,7 +9,7 @@ public class RoomService {
     private final RoomRepository roomRepository;
     private final RentRepository rentRepository;
 
-    public RoomService(RoomRepository roomRepository, RentRepository rentRepository) {
+    public RoomService() {
         this.roomRepository = new RoomRepository();
         this.rentRepository = new RentRepository();
     }
