@@ -55,7 +55,8 @@ public class RoomRepository extends AbstractMongoRepository {
     public Room findByRoomNumber(Integer roomNumber) {
         MongoCollection<Room> collection = mongoHotel.getCollection(collectionName, Room.class);
         Bson filter = Filters.eq("roomNumber", roomNumber);
-        return collection.find().filter(filter).first();
+        Room found = collection.find().filter(filter).first();
+        return found;
     }
 
     public void update(Room room) {

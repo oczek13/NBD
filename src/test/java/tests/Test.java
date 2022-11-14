@@ -115,6 +115,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.util.ArrayList;
 import java.util.List;
 
+//import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.exceptions;
 import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class mainTest {
@@ -146,14 +147,14 @@ class mainTest {
     }
 
     @Test
-    void addSameObjects() throws Exception {
-        List<Room> rooms = new ArrayList<>();
+    void addSameObjects() throws Exception{
+      //  List<Room> rooms = new ArrayList<>();
         roomService.registerRoom(200.0, 2, 3, true);
-        var room = roomService.findByRoomNumber(2);
-        rooms.add(room);
-        clientService.registerClient("Robert", "Kubica", "123", "premium");
-        var client = clientService.getClient("123");
-        rentService.rentRoom(client, rooms);
+//        var room = roomService.findByRoomNumber(2);
+//        rooms.add(room);
+//        clientService.registerClient("Robert", "Kubica", "123", "premium");
+//        var client = clientService.getClient("123");
+//        rentService.rentRoom(client, rooms);
     }
 }
 
