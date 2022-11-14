@@ -82,27 +82,33 @@ public abstract class Client extends AbstractEntity {
     private Integer age;
     @BsonProperty("isarchived")
     private boolean isArchived;
+    @BsonProperty("type")
+    private String type;
+
 
     @BsonCreator
     public Client(@BsonProperty("_id") UniqueId enitityId,
                   @BsonProperty("firstname") String firstName,
                   @BsonProperty("lastname") String lastName,
                   @BsonProperty("personalid") String personalID,
-                  @BsonProperty("isarchived") boolean isArchived)
+                  @BsonProperty("isarchived") boolean isArchived,
+                  @BsonProperty("type") String type)
     {
         super(enitityId);
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalID = personalID;
         this.isArchived = isArchived;
+        this.type = type;
     }
 
-    public Client(String firstName, String lastName,  String personalID) {
+    public Client(String firstName, String lastName,  String personalID, String type) {
         super(new UniqueId());
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalID = personalID;
         this.isArchived = false;
+        this.type = type;
     }
 
     public abstract double getDiscount();

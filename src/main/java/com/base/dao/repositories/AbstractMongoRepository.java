@@ -19,10 +19,10 @@ import java.util.List;
 import java.util.UUID;
 
 public abstract class AbstractMongoRepository<T> implements AutoCloseable{
-    private ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
-    private MongoCredential credential = MongoCredential.createCredential("admin", "admin", "adminpassword".toCharArray());
+    protected ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017");
+    protected MongoCredential credential = MongoCredential.createCredential("admin", "admin", "adminpassword".toCharArray());
 
-    private CodecRegistry pojoCodecRegistry =
+    protected CodecRegistry pojoCodecRegistry =
             CodecRegistries.fromProviders(PojoCodecProvider.builder()
             .automatic(true)
 		    .conventions(List.of(Conventions.ANNOTATION_CONVENTION))
@@ -38,7 +38,7 @@ public abstract class AbstractMongoRepository<T> implements AutoCloseable{
         this.entityClass = entityClass;
         initDbConnection();
     }
-    private void initDbConnection() {
+    protected void initDbConnection() {
         MongoClientSettings settings = MongoClientSettings.builder()
                 .credential(credential)
                 .applyConnectionString(connectionString)
@@ -50,7 +50,7 @@ public abstract class AbstractMongoRepository<T> implements AutoCloseable{
                 ))
                 .build();
         mongoClient = MongoClients.create(settings);
-        mongoHotel = mongoClient.getDatabase("rentacar");
+        mongoHotel = mongoClient.getDatabase("hotel");
     }
 
     public void add(T object) {

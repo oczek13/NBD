@@ -33,8 +33,9 @@ public class Premium extends Client {
     @BsonCreator
     public Premium(@BsonProperty("firstname") String firstName,
                  @BsonProperty("lastname") String lastName,
-                 @BsonProperty("personalid") String personalID) {
-        super(firstName, lastName, personalID);
+                 @BsonProperty("personalid") String personalID,
+                 @BsonProperty("type") String type) {
+        super(firstName, lastName, personalID, type);
     }
 
 
