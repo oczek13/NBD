@@ -33,11 +33,8 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.CreateCollectionOptions;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.model.ValidationOptions;
-import org.bson.Document;
 import org.bson.UuidRepresentation;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.conversions.Bson;
@@ -46,10 +43,6 @@ public class RoomRepository extends AbstractMongoRepository {
 
     public RoomRepository() {
         super("rooms", Room.class);
-    }
-
-    public RoomRepository(String collectionName, Class entityClass) {
-        super(collectionName, entityClass);
     }
 
     public Room findByRoomNumber(Integer roomNumber) {
