@@ -105,12 +105,10 @@ public abstract class Client extends AbstractEntity {
         this.isArchived = false;
     }
 
-    public abstract Float getPenalty();
+    public abstract double getDiscount();
 
-    public abstract Integer getMaxDays();
 
-    public abstract Integer getMaxBooks();
-
+    public abstract String getTypeInfo();
 }
 
 
