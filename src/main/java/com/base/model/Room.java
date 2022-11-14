@@ -16,7 +16,7 @@
 //@Entity
 //@Table(name = "Room")
 //
-//public class Room extends AbstractEntity {
+
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +56,7 @@
 
 package com.base.model;
 
-import com.base.model.UniqueId;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonCreator;
@@ -90,11 +90,12 @@ public class Room extends AbstractEntity {
         this.isAvailable = isAvailable;
     }
 
-    public Room(double basePrice, Integer roomNumber, Integer roomCapacity) {
+    public Room(double basePrice, Integer roomNumber, Integer roomCapacity, boolean isAvailable) {
         super(new UniqueId());
         this.basePrice = basePrice;
         this.roomNumber = roomNumber;
         this.roomCapacity = roomCapacity;
+        this.isAvailable = isAvailable;
     }
 }
 

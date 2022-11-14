@@ -30,7 +30,6 @@ package com.base.dao.repositories;
 import com.base.model.Room;
 import com.base.model.UniqueIdCodecProvider;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoCommandException;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -38,19 +37,21 @@ import com.mongodb.client.model.CreateCollectionOptions;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.model.ValidationOptions;
-import library.model.Book;
-import library.model.UniqueIdCodecProvider;
 import org.bson.Document;
 import org.bson.UuidRepresentation;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.conversions.Bson;
 
-public class BookRepository extends AbstractMongoRepository {
+public class RoomRepository extends AbstractMongoRepository {
 
-
-    public BookRepository() {
-        super("books", Room.class);
+    public RoomRepository() {
+        super("rooms", Room.class);
     }
+
+    public RoomRepository(String collectionName, Class entityClass) {
+        super(collectionName, entityClass);
+    }
+
     public Room findByRoomNumber(Integer roomNumber) {
         MongoCollection<Room> collection = mongoHotel.getCollection(collectionName, Room.class);
         Bson filter = Filters.eq("roomNumber", roomNumber);
@@ -87,21 +88,21 @@ public class BookRepository extends AbstractMongoRepository {
         collection.drop();
     }
 
-//    public void incrementIsRented(Room room) {
-//        ClientSession clientSession = mongoClient.startSession();
-//        try {
-//            clientSession.startTransaction();
-//            MongoCollection<Book> booksCollection = mongoDatabase.getCollection(collectionName, Book.class);
-//            Bson filter = Filters.eq("_id", book.getEntityId());
-//            Bson update = Updates.inc("rented",1);
-//            booksCollection.updateOne(clientSession,filter,update);
-//            clientSession.commitTransaction();
-//        } catch (Exception e) {
-//            clientSession.abortTransaction();
-//        } finally {
-//            clientSession.close();
-//        }
-//    }
+    public void incrementIsRented(Room room) {
+        ClientSession clientSession = mongoClient.startSession();
+        try {
+            clientSession.startTransaction();
+            MongoCollection<Room> booksCollection = mongoHotel.getCollection(collectionName, Room.class);
+            Bson filter = Filters.eq("_id", room.getEntityId());
+            Bson update = Updates.inc("rented",1);
+            booksCollection.updateOne(clientSession,filter,update);
+            clientSession.commitTransaction();
+        } catch (Exception e) {
+            clientSession.abortTransaction();
+        } finally {
+            clientSession.close();
+        }
+    }
 
     @Override
     protected void initDbConnection() {
@@ -126,7 +127,7 @@ public class BookRepository extends AbstractMongoRepository {
                                     "rented": {
                                         "bsonType" : "int",
                                         "minimum" : 0,
-                                        "maximum" : 1
+                                        "maximum" : 1                      //czy na pewno max 1?
                                     }
                                 }
                             }

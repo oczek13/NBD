@@ -37,10 +37,6 @@ import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import jakarta.persistence.EntityManager;
-import library.model.Book;
-import library.model.Client;
-import library.model.Rent;
 import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
@@ -57,7 +53,7 @@ public class RentRepository extends AbstractMongoRepository {
         Bson filter = Filters.eq("client._id", client.getEntityId());
         return collection.find().filter(filter).into(new ArrayList<>());
     }
-    public Rent findByBook(Room room) {
+    public Rent findByRoom(Room room) {
         MongoCollection<Rent> collection = mongoHotel.getCollection(collectionName, Rent.class);
         Bson filter = Filters.eq("room._id", room.getEntityId());
         return collection.find().filter(filter).first();

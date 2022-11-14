@@ -1,42 +1,14 @@
-//package com.base.dao.repositories;
-//
-//import com.base.model.Client;
-//import jakarta.persistence.EntityManager;
-//import java.util.List;
-//
-//public class ClientRepository extends RepositoryImpl<Client> {
-//
-//    public ClientRepository(EntityManager em) {
-//        super(em);
-//    }
-//    @Override
-//    public List<Client> findAll(){
-//        return em.createQuery("Select client from Client client", Client.class).getResultList();
-//    }
-//
-//    @Override
-//    public Client getById(int id) {
-//        return em.find(Client.class, id);
-//    }
-//}
-//
-//// Oczek13 zrobił syf na GitHubie :)
-
+// Oczek13 zrobił syf na GitHubie :)
 
 package com.base.dao.repositories;
-
 import com.base.model.Client;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import library.model.Book;
-import library.model.Client;
 import org.bson.conversions.Bson;
 
 public class ClientRepository extends AbstractMongoRepository<Client> {
-
-
     public ClientRepository() {
         super("clients", Client.class);
     }

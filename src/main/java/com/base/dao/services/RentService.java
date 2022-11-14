@@ -17,9 +17,9 @@ public class RentService {
     private final ClientRepository clientRepository;
 
     public RentService(RentRepository rentRepository, ClientRepository clientRepository, RoomRepository roomRepository) {
-        this.rentRepository = rentRepository;
-        this.roomRepository = roomRepository;
-        this.clientRepository = clientRepository;
+        this.rentRepository = new RentRepository();
+        this.roomRepository = new RoomRepository();
+        this.clientRepository = new ClientRepository();
     }
 
     public boolean rentRoom(Client client, List<Room> rooms) {
@@ -33,7 +33,7 @@ public class RentService {
                 (room -> {room.setAvailable(false);
                           roomRepository.update(room);
                          });
-        rentRepository.add(new Rent(rooms, client));
+        rentRepository.add(new Rent(client, (Room) rooms));
         return true;
     }
 
@@ -42,13 +42,49 @@ public class RentService {
         }
 
         private boolean checkRooms (List<Room> rooms, List<Room> rooms1){
-            for (Room room: rooms) {
+            for (Room room: rooms)
+            {
                     for (Room room1: rooms1)
                     {
-                        if (Objects.equals(room.getRoomID(), room1.getRoomID())) return true;
+                        if (Objects.equals(room.getEntityId(), room1.getEntityId())) return true;
                     }
-                                   }
+            }
             return false;
             }
 
+        private void checkIfBookCanBeRented(Client client, Room room) throws Exception {
+            if (client.isArchived()) {
+                throw new Exception("Klient jest zarchiwizowany");
+            }
+            if (!room.isAvailable()) {
+                throw new Exception("Pokój jest niedostępny");
+            }
+            if (rentRepository.findByRoom(room) != null) {
+                throw new Exception("Pokój jest właśnie wynajmowany");
+            }
+        }
+
+        public void endOfRent(Integer roomNumber) {
+            try {
+                Room room = roomRepository.findByRoomNumber(roomNumber);
+                if (room == null) {
+                    throw new Exception("Nie ma pokoju o takim numerze");
+                }
+                Rent rent = rentRepository.findByRoom(room);
+                if (rent == null) {
+                    throw new Exception("Ten pokój nie jest wynajęty");
+                }
+                rentRepository.delete(rent.getEntityId().getUUID());
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        public Rent getRentByRoom(Integer roomNumber) {
+            return rentRepository.findByRoom(roomRepository.findByRoomNumber(roomNumber));
+        }
+
+        public List<Rent> getRentByClient(String personalID){
+            return rentRepository.findByClient(clientRepository.findByPersonalID(personalID));
+        }
 }

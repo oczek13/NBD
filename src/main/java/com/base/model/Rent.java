@@ -63,18 +63,15 @@
 
 package com.base.model;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonCreator;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.UUID;
+import java.util.List;
 
 @Getter
 @Setter
@@ -87,15 +84,18 @@ public class Rent extends AbstractEntity {
     private Client client;
     @BsonProperty("book")
     private Room room;
+
+    @NotNull
+    private List<Room> rooms;
+
     @BsonCreator
     public Rent(@BsonProperty("_id") UniqueId entityId,
                 @BsonProperty("client") Client client,
                 @BsonProperty("book")Room room,
-                @BsonProperty("begintime") Date begintime,
-                @BsonProperty("endtime") Date endtime) {
+                @BsonProperty("begintime") Date begintime) {
         super(entityId);
         this.client = client;
-        this.beginTime = begintime;
+        this.beginTime = new Date();
         this.room = room;
     }
 
