@@ -1,26 +1,3 @@
-//package com.base.model;
-//
-//public class Normal extends ClientType{
-//
-//    @Override
-//    public double getDiscout() {
-//        return 1.0;
-//    }
-//
-//    @Override
-//    public String getTypeInfo() {
-//        return "NORMAL";
-//    }
-//
-//
-//    @Override
-//    public String toString() {
-//        return "Normal";
-//    }
-//}
-
-
-
 package com.base.model;
 
 import lombok.Getter;
@@ -38,16 +15,6 @@ public class Normal extends Client {
                    @BsonProperty("personalid") String personalID,
                    @BsonProperty("type") String type) {
         super(firstName, lastName, personalID, type);
-    }
-
-
-    public double getDiscount() {
-        return 1.0;
-    }
-
-    @Override
-    public String getTypeInfo() {
-        return "NORMAL";
     }
 
     @Override

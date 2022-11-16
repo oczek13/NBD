@@ -12,9 +12,6 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.Conventions;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -59,11 +56,7 @@ public abstract class AbstractMongoRepository<T> implements AutoCloseable{
         MongoCollection<T> collection = mongoHotel.getCollection(collectionName, entityClass);
         collection.insertOne(object);
     }
-    public T findById(UUID id) {
-        MongoCollection<T> collection = mongoHotel.getCollection(collectionName, entityClass);
-        Bson filter = Filters.eq("_id", id);
-        return collection.find().filter(filter).first();
-    }
+
     public List<T> findAll() {
         MongoCollection<T> collection = mongoHotel.getCollection(collectionName, entityClass);
         return collection.find().into(new ArrayList<>());

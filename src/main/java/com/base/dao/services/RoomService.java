@@ -28,16 +28,6 @@ public class RoomService {
         return room;
     }
 
-//    public Room registerRoom(double basePrice, int roomNumber, int capacity, boolean isAvailable) {
-//        Room room = new Room(basePrice, roomNumber, capacity, isAvailable);
-//        if(roomRepository.findByRoomNumber(roomNumber) == null){
-//            roomRepository.add(room);
-//        } else {
-//            throw new RuntimeException("Ten pokój już istnieje w bazie danych!");
-//        }
-//        return room;
-//    }
-
     public void unregisterRoom(Room room)  {
         roomRepository.delete(room.getEntityId().getUUID());
     }

@@ -51,15 +51,4 @@ public class RentService {
             }
             return false;
             }
-
-        public void endOfRent(Rent rent) {
-            rentRepository.delete(rent.getEntityId().getUUID());
-        }
-        public Rent getRentByRoom(Integer roomNumber) {
-            return rentRepository.findByRoom(roomRepository.findByRoomNumber(roomNumber));
-        }
-
-        public List<Rent> getRentByClient(String personalID){
-            return rentRepository.findByClient(clientRepository.findByPersonalID(personalID));
-        }
 }
