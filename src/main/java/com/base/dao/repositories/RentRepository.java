@@ -66,7 +66,7 @@ public class RentRepository extends AbstractMongoRepository {
             Bson filter = Filters.eq("_id", rent.getEntityId());
             Bson setUpdate = Updates.combine(
                     Updates.set("client", rent.getClient()),
-                    Updates.set("room", rent.getRoom())
+                    Updates.set("room", rent.getRooms())
             );
             clientsCollection.updateOne(clientSession, filter, setUpdate);
             clientSession.commitTransaction();

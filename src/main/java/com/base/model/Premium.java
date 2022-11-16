@@ -24,6 +24,7 @@ package com.base.model;
 import lombok.Getter;
 import org.bson.codecs.pojo.annotations.BsonCreator;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
 @Getter
@@ -31,7 +32,8 @@ import org.bson.codecs.pojo.annotations.BsonProperty;
 public class Premium extends Client {
 
     @BsonCreator
-    public Premium(@BsonProperty("firstname") String firstName,
+    public Premium(
+                @BsonProperty("firstname") String firstName,
                  @BsonProperty("lastname") String lastName,
                  @BsonProperty("personalid") String personalID,
                  @BsonProperty("type") String type) {

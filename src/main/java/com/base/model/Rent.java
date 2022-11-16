@@ -75,34 +75,31 @@ import java.util.List;
 
 @Getter
 @Setter
-@BsonDiscriminator
 public class Rent extends AbstractEntity {
 
     @BsonProperty("begintime")
     private Date beginTime;
     @BsonProperty(value = "client", useDiscriminator = true)
     private Client client;
-    @BsonProperty("book")
-    private Room room;
-
+    @BsonProperty("rooms")
     @NotNull
     private List<Room> rooms;
 
     @BsonCreator
     public Rent(@BsonProperty("_id") UniqueId entityId,
                 @BsonProperty("client") Client client,
-                @BsonProperty("book")Room room,
+                @BsonProperty("rooms")List<Room> rooms,
                 @BsonProperty("begintime") Date begintime) {
         super(entityId);
         this.client = client;
         this.beginTime = new Date();
-        this.room = room;
+        this.rooms = rooms;
     }
 
-    public Rent(Client client, Room room) {
+    public Rent(Client client, List<Room> rooms) {
         super(new UniqueId());
         this.client = client;
-        this.room = room;
+        this.rooms = rooms;
         this.beginTime = new Date();
     }
 

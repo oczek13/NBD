@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public abstract class AbstractEntity implements Serializable {
+public abstract class AbstractEntity {
     @BsonProperty("_id")
     @BsonId
     protected UniqueId entityId;

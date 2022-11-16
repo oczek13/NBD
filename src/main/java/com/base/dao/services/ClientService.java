@@ -52,7 +52,7 @@ public class ClientService {
 
     public Client registerClient(String firstname, String lastname, String personalID, String type) {
         Client client;
-        if(clientRepository.findByPersonalID(personalID) == null){
+        //if(clientRepository.findByPersonalID(personalID) == null){
             if (type == "Normal" || type == "NORMAL" || type == "normal") {
                 client = new Normal(firstname, lastname, personalID, type);
                 clientRepository.add(client);
@@ -63,9 +63,6 @@ public class ClientService {
             else {
                 throw new RuntimeException("Niepoprawny typ klienta");
             }
-        } else {
-            throw new RuntimeException("Podany pesel juz istnieje w bazie danych");
-        }
 
         return client;
     }

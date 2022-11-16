@@ -33,7 +33,7 @@ public class RentService {
                 (room -> {room.setAvailable(false);
                           roomRepository.update(room);
                          });
-        rentRepository.add(new Rent(client, (Room) rooms));
+        rentRepository.add(new Rent(client, rooms));
         return true;
     }
 

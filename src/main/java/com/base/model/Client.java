@@ -6,12 +6,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonCreator;
 import org.bson.codecs.pojo.annotations.BsonDiscriminator;
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
 
 @Getter
 @Setter
-@BsonDiscriminator(key = "_clazz")
+//@BsonDiscriminator(key = "_clazz")
 public abstract class Client extends AbstractEntity {
 
     @BsonProperty("personalid")
@@ -20,8 +21,6 @@ public abstract class Client extends AbstractEntity {
     private String firstName;
     @BsonProperty("lastname")
     private String lastName;
-    @BsonProperty("age")
-    private Integer age;
     @BsonProperty("isarchived")
     private boolean isArchived;
     @BsonProperty("type")

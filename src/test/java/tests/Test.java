@@ -105,6 +105,8 @@ import com.base.dao.repositories.RoomRepository;
 import com.base.dao.services.ClientService;
 import com.base.dao.services.RentService;
 import com.base.dao.services.RoomService;
+import com.base.model.Client;
+import com.base.model.Premium;
 import com.base.model.Room;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -147,7 +149,14 @@ class mainTest {
 
     @Test
     void addSameObjects(){
+         List<Room> rooms = new ArrayList<>();
           Room room = new Room(250, 1, 2, true);
           roomService.registerRoom(room);
+          rooms.add(room);
+          clientService.registerClient("Robert", "Kubica", "123", "premium");
+
+          Client client = new Premium("Bob", "Marlej", "420", "premium");
+          rentService.rentRoom(client, rooms);
+
     }
 }
