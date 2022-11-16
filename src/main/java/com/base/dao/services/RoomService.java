@@ -39,9 +39,6 @@ public class RoomService {
 //    }
 
     public void unregisterRoom(Room room)  {
-//        roomRepository.delete(room.getEntityId().getUUID());
-//        room.setPossibleForRent("No");
-//        roomRepository.update(room);
         roomRepository.delete(room.getEntityId().getUUID());
     }
     }

@@ -2,8 +2,6 @@
 
 package com.base.dao.repositories;
 import com.base.model.Client;
-import com.base.model.Premium;
-import com.base.model.Room;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;

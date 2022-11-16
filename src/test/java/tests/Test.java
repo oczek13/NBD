@@ -157,6 +157,7 @@ class mainTest {
           Client client = new Premium("Bob", "Marlej", "420", "premium");
           clientService.registerClient(client);
           rentService.rentRoom(client, rooms);
+          assertEquals(1, rentService.findAllCurrentRents().size());
     }
 
     @Test
@@ -181,18 +182,13 @@ class mainTest {
     }
 
     @Test
-    void updateClientTest(){
-        Client client = new Premium("Bob", "Marlej", "420", "premium");
-        clientService.registerClient(client);
-        client.setFirstName("Jan");
-        assertEquals(client.getFirstName(), "Jan");
-        clientRepository.update(client);
-    }
-
-    @Test
     void getTest(){
         Room room = new Room(250, 1, 2, "Yes");
         roomService.registerRoom(room);
         assertEquals(room.getEntityId().getUUID(), roomService.findByRoomNumber(1).getEntityId().getUUID());
+        Client client = new Premium("Bob", "Marlej", "420", "premium");
+        clientService.registerClient(client);
+        client.setFirstName("Jan");
+        assertEquals(client.getFirstName(), "Jan");
     }
 }

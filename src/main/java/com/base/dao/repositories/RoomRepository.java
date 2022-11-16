@@ -89,8 +89,8 @@ public class RoomRepository extends AbstractMongoRepository {
             clientSession.startTransaction();
             MongoCollection<Room> booksCollection = mongoHotel.getCollection(collectionName, Room.class);
             Bson filter = Filters.eq("_id", room.getEntityId());
-            Bson update = Updates.inc("rented",1);
-            booksCollection.updateOne(clientSession,filter,update);
+            Bson update = Updates.inc("rented", 1);
+            booksCollection.updateOne(clientSession, filter, update);
             clientSession.commitTransaction();
         } catch (Exception e) {
             clientSession.abortTransaction();
@@ -112,28 +112,5 @@ public class RoomRepository extends AbstractMongoRepository {
                 ).build();
         mongoClient = MongoClients.create(settings);
         mongoHotel = mongoClient.getDatabase("hotel");
-//        ValidationOptions validationOptions = new ValidationOptions().validator(
-//                Document.parse("""
-//                        {
-//                            $jsonSchema:{
-//                                "bsonType": "object",
-//                                "required": ["_id","isAvailable"]
-//                                "properties": {
-//                                    "rented": {
-//                                        "bsonType" : "int",
-//                                        "minimum" : 0,
-//                                        "maximum" : 1                      //czy na pewno max 1?
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        """));
-//        CreateCollectionOptions createCollectionOptions = new CreateCollectionOptions()
-//                .validationOptions(validationOptions);
-//        try {
-//            mongoHotel.createCollection("rooms", createCollectionOptions);
-//        } catch (Exception e) {
-
-        }
     }
-
+}

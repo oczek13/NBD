@@ -29,10 +29,10 @@ public class RentService {
         if(checkRooms(allRooms, rooms)) {
             return false;
         }
-//        rooms.forEach
-//                (room -> {room.setAvailable(false);
-//                          roomRepository.update(room);
-//                         });
+        rooms.forEach
+                (room -> {room.setPossibleForRent("No");
+                          roomRepository.update(room);
+                         });
         rentRepository.add(new Rent(client, rooms));
         return true;
     }
@@ -52,33 +52,8 @@ public class RentService {
             return false;
             }
 
-//        private void checkIfBookCanBeRented(Client client, Room room) throws Exception {
-//            if (client.isArchived()) {
-//                throw new Exception("Klient jest zarchiwizowany");
-//            }
-//            if (!room.isAvailable()) {
-//                throw new Exception("Pokój jest niedostępny");
-//            }
-//            if (rentRepository.findByRoom(room) != null) {
-//                throw new Exception("Pokój jest właśnie wynajmowany");
-//            }
-//        }
-
-        public void endOfRent(Integer roomNumber) {
-            try {
-                Room room = roomRepository.findByRoomNumber(roomNumber);
-                if (room == null) {
-                    throw new Exception("Nie ma pokoju o takim numerze");
-                }
-                Rent rent = rentRepository.findByRoom(room);
-                if (rent == null) {
-                    throw new Exception("Ten pokój nie jest wynajęty");
-                }
-                rentRepository.delete(rent.getEntityId().getUUID());
-
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+        public void endOfRent(Rent rent) {
+            rentRepository.delete(rent.getEntityId().getUUID());
         }
         public Rent getRentByRoom(Integer roomNumber) {
             return rentRepository.findByRoom(roomRepository.findByRoomNumber(roomNumber));
