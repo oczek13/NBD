@@ -2,6 +2,8 @@
 
 package com.base.dao.repositories;
 import com.base.model.Client;
+import com.base.model.Premium;
+import com.base.model.Room;
 import com.mongodb.client.ClientSession;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
@@ -15,7 +17,7 @@ public class ClientRepository extends AbstractMongoRepository<Client> {
 
     public Client findByPersonalID(String personalID) {
         MongoCollection<Client> collection = mongoHotel.getCollection(collectionName, Client.class);
-        Bson filter = Filters.eq("personalid", personalID);
+        Bson filter = Filters.eq("personalID", personalID);
         return collection.find().filter(filter).first();
     }
 
@@ -27,10 +29,11 @@ public class ClientRepository extends AbstractMongoRepository<Client> {
             Bson filter = Filters.eq("_id", client.getEntityId());
 
             Bson setUpdate = Updates.combine(
-                    Updates.set("personalid", client.getPersonalID()),
-                    Updates.set("firstname", client.getFirstName()),
-                    Updates.set("lastname", client.getLastName()),
-                    Updates.set("type", client.getType())
+                    Updates.set("personalID", client.getPersonalID()),
+                    Updates.set("firstName", client.getFirstName()),
+                    Updates.set("lastName", client.getLastName()),
+                    Updates.set("type", client.getType()),
+                    Updates.set("isArchived", client.isArchived())
             );
 
             clientsCollection.updateOne(clientSession, filter, setUpdate);
@@ -41,7 +44,6 @@ public class ClientRepository extends AbstractMongoRepository<Client> {
             clientSession.close();
         }
     }
-
     public void clearDatabase() {
         MongoCollection<Client> collection = mongoHotel.getCollection(collectionName, Client.class);
         collection.drop();

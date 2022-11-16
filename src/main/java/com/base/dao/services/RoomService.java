@@ -38,12 +38,10 @@ public class RoomService {
 //        return room;
 //    }
 
-    public void unregisterRoom(Integer roomNumber) throws Exception {
-        Room room = roomRepository.findByRoomNumber(roomNumber);
-        if (rentRepository.findByRoom(room) != null) {
-            throw new Exception("Ten pokój jest właśnie wynajmowany!");
-        }
-        room.setAvailable(false);
-        roomRepository.update(room);
+    public void unregisterRoom(Room room)  {
+//        roomRepository.delete(room.getEntityId().getUUID());
+//        room.setPossibleForRent("No");
+//        roomRepository.update(room);
+        roomRepository.delete(room.getEntityId().getUUID());
     }
     }

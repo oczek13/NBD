@@ -50,14 +50,13 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Client registerClient(String firstname, String lastname, String personalID, String type) {
-        Client client;
+    public Client registerClient(Client client) {
         //if(clientRepository.findByPersonalID(personalID) == null){
-            if (type == "Normal" || type == "NORMAL" || type == "normal") {
-                client = new Normal(firstname, lastname, personalID, type);
+            if (client.getType() == "Normal" || client.getType() == "NORMAL" || client.getType() == "normal") {
+                client = new Normal(client.getFirstName(), client.getLastName(), client.getPersonalID(), client.getType());
                 clientRepository.add(client);
-            } else if (type == "Premium" || type == "PREMIUM" || type == "premium") {
-                client = new Premium(firstname, lastname, personalID, type);
+            } else if (client.getType() == "Premium" || client.getType() == "PREMIUM" || client.getType() == "premium") {
+                client = new Premium(client.getFirstName(), client.getLastName(), client.getPersonalID(), client.getType());
                 clientRepository.add(client);
             }
             else {
@@ -67,10 +66,9 @@ public class ClientService {
         return client;
     }
 
-    public void unregisterClient(String personalID) throws Exception {
-        Client client = clientRepository.findByPersonalID(personalID);
-        client.setArchived(true);
-        clientRepository.update(client);
+    public void unregisterClient(Client client) {
+//        Client client = clientRepository.findByPersonalID(personalID);
+        clientRepository.delete(client.getEntityId().getUUID());
     }
 
 }

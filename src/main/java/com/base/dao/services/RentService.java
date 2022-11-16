@@ -29,10 +29,10 @@ public class RentService {
         if(checkRooms(allRooms, rooms)) {
             return false;
         }
-        rooms.forEach
-                (room -> {room.setAvailable(false);
-                          roomRepository.update(room);
-                         });
+//        rooms.forEach
+//                (room -> {room.setAvailable(false);
+//                          roomRepository.update(room);
+//                         });
         rentRepository.add(new Rent(client, rooms));
         return true;
     }
@@ -52,17 +52,17 @@ public class RentService {
             return false;
             }
 
-        private void checkIfBookCanBeRented(Client client, Room room) throws Exception {
-            if (client.isArchived()) {
-                throw new Exception("Klient jest zarchiwizowany");
-            }
-            if (!room.isAvailable()) {
-                throw new Exception("Pokój jest niedostępny");
-            }
-            if (rentRepository.findByRoom(room) != null) {
-                throw new Exception("Pokój jest właśnie wynajmowany");
-            }
-        }
+//        private void checkIfBookCanBeRented(Client client, Room room) throws Exception {
+//            if (client.isArchived()) {
+//                throw new Exception("Klient jest zarchiwizowany");
+//            }
+//            if (!room.isAvailable()) {
+//                throw new Exception("Pokój jest niedostępny");
+//            }
+//            if (rentRepository.findByRoom(room) != null) {
+//                throw new Exception("Pokój jest właśnie wynajmowany");
+//            }
+//        }
 
         public void endOfRent(Integer roomNumber) {
             try {

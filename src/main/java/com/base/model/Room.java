@@ -73,29 +73,35 @@ public class Room extends AbstractEntity {
     private Integer roomNumber;
     @BsonProperty("roomCapacity")
     private Integer roomCapacity;
-    @BsonProperty("isAvailable")
-    private boolean isAvailable;
+
+    @BsonProperty("possibleForRent")
+    private String possibleForRent;
+//    @BsonProperty("isAvailable")
+//    public boolean isAvailable;
 
     @BsonCreator
     public Room(@BsonProperty("_id") UniqueId enitityId,
                 @BsonProperty("basePrice") double basePrice,
                 @BsonProperty("roomNumber") Integer roomNumber,
                 @BsonProperty("roomCapacity") Integer roomCapacity,
-                @BsonProperty("isAvailable") boolean isAvailable)
+                @BsonProperty("possibleForRent") String possibleForRent)
+//                @BsonProperty("isAvailable") boolean isAvailable)
     {
         super(enitityId);
         this.basePrice = basePrice;
         this.roomNumber = roomNumber;
         this.roomCapacity = roomCapacity;
-        this.isAvailable = isAvailable;
+        this.possibleForRent = possibleForRent;
+//        this.isAvailable = isAvailable;
     }
 
-    public Room(double basePrice, Integer roomNumber, Integer roomCapacity, boolean isAvailable) {
+    public Room(double basePrice, Integer roomNumber, Integer roomCapacity, String possibleForRent) {
         super(new UniqueId());
         this.basePrice = basePrice;
         this.roomNumber = roomNumber;
         this.roomCapacity = roomCapacity;
-        this.isAvailable = isAvailable;
+        this.possibleForRent = possibleForRent;
+//        this.isAvailable = isAvailable;
     }
 }
 

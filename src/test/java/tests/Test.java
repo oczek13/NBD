@@ -107,6 +107,7 @@ import com.base.dao.services.RentService;
 import com.base.dao.services.RoomService;
 import com.base.model.Client;
 import com.base.model.Premium;
+import com.base.model.Rent;
 import com.base.model.Room;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -149,14 +150,49 @@ class mainTest {
 
     @Test
     void addSameObjects(){
-         List<Room> rooms = new ArrayList<>();
-          Room room = new Room(250, 1, 2, true);
+          List<Room> rooms = new ArrayList<>();
+          Room room = new Room(250, 1, 2, "Yes");
           roomService.registerRoom(room);
           rooms.add(room);
-          clientService.registerClient("Robert", "Kubica", "123", "premium");
-
           Client client = new Premium("Bob", "Marlej", "420", "premium");
+          clientService.registerClient(client);
           rentService.rentRoom(client, rooms);
+    }
 
+    @Test
+    void deleteTest(){
+        List<Room> rooms = new ArrayList<>();
+        Room room = new Room(250, 1, 2, "Yes");
+        roomService.registerRoom(room);
+        rooms.add(room);
+        roomService.unregisterRoom(room);
+        assertEquals(0, roomService.findAllRooms().size());
+    }
+
+    @Test
+    void updateTest(){
+        List<Room> rooms = new ArrayList<>();
+        Room room = new Room(250, 1, 2, "Yes");
+        roomService.registerRoom(room);
+        rooms.add(room);
+        room.setBasePrice(10000);
+        roomRepository.update(room);
+        assertEquals(room.getBasePrice(), 10000);
+    }
+
+    @Test
+    void updateClientTest(){
+        Client client = new Premium("Bob", "Marlej", "420", "premium");
+        clientService.registerClient(client);
+        client.setFirstName("Jan");
+        assertEquals(client.getFirstName(), "Jan");
+        clientRepository.update(client);
+    }
+
+    @Test
+    void getTest(){
+        Room room = new Room(250, 1, 2, "Yes");
+        roomService.registerRoom(room);
+        assertEquals(room.getEntityId().getUUID(), roomService.findByRoomNumber(1).getEntityId().getUUID());
     }
 }

@@ -64,7 +64,8 @@ public class RoomRepository extends AbstractMongoRepository {
                     Updates.set("basePrice", room.getBasePrice()),
                     Updates.set("roomNumber", room.getRoomNumber()),
                     Updates.set("roomCapacity", room.getRoomCapacity()),
-                    Updates.set("isAvailable", room.isAvailable())
+                    Updates.set("possibleForRent", room.getPossibleForRent())
+//                    Updates.set("isAvailable", room.isAvailable())
             );
 
             roomsCollection.updateOne(clientSession, filter, setUpdate);
